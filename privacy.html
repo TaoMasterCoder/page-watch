@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Page Watch</title>
+<style>
+  body { max-width: 720px; margin: 40px auto; padding: 0 20px; font: 16px/1.65 system-ui, -apple-system, sans-serif; color: #202124; }
+  h1 { font-size: 26px; border-bottom: 2px solid #0b57d0; padding-bottom: 8px; }
+  h2 { font-size: 18px; margin-top: 28px; color: #0b57d0; }
+  .meta { color: #777; font-size: 13px; }
+  .tldr { background: #e8f0fe; border-radius: 8px; padding: 14px 18px; font-size: 15px; }
+  code { background: #f1f3f4; padding: 1px 5px; border-radius: 3px; font-size: 14px; }
+  footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid #eee; color: #777; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Page Watch — Privacy Policy</h1>
+<p class="meta">Effective: September 14, 2026 · Version 1.0</p>
+
+<div class="tldr"><strong>TL;DR:</strong> Page Watch runs 100% inside your browser. Your monitors, snapshots, and change history never leave your device. We have no servers, no accounts, no analytics, and nothing to sell.</div>
+
+<h2>1. What Page Watch does</h2>
+<p>Page Watch is a Chrome extension that periodically revisits web pages <em>you</em> choose to monitor, compares them against locally stored snapshots, and notifies you of changes. All monitoring, storage, and comparison happen on your own device.</p>
+
+<h2>2. Data we collect: none</h2>
+<p>We operate no backend servers. Page Watch does not collect, transmit, or store any personal data about you anywhere outside your own browser. Specifically:</p>
+<ul>
+  <li><strong>No accounts.</strong> There is no sign-up; nothing is tied to an identity we hold.</li>
+  <li><strong>No analytics or telemetry.</strong> We do not track usage, installs, or behavior.</li>
+  <li><strong>No third-party trackers.</strong> The extension loads no ads, SDKs, or tracking scripts.</li>
+</ul>
+
+<h2>3. Data stored locally on your device</h2>
+<p>The following data is stored only in your browser's local extension storage (<code>chrome.storage.local</code>) and is never sent to us:</p>
+<ul>
+  <li>The URLs, selectors, and labels of monitors <em>you</em> create</li>
+  <li>Text snapshots and small pixel signatures of the monitored regions, used for change detection</li>
+  <li>Change history (up to 50 events per monitor)</li>
+  <li>Your preferences (check interval, notification setting, ignore rules)</li>
+  <li>Your license key and its verification status (see §5)</li>
+</ul>
+<p>Deleting the extension (or its data via <code>chrome://extensions</code>) permanently removes all of this.</p>
+
+<h2>4. Network requests the extension makes</h2>
+<ul>
+  <li><strong>To pages you monitor.</strong> Page Watch fetches only the URLs you explicitly add, at the interval you set, from your own machine. These requests go directly from your browser to that website — they never pass through us. Please respect the target site's terms of service and use reasonable check intervals.</li>
+  <li><strong>To the license server (Pro only).</strong> If you enter a license key, the extension verifies it with the license provider (Gumroad). This request contains only your license key and the product identifier. Verification results are cached locally for 7 days so the extension keeps working offline.</li>
+</ul>
+
+<h2>5. License key (Pro version)</h2>
+<p>Pro unlocks are handled through Gumroad. When you activate a license, your key is sent to Gumroad's license verification API for validation. Purchase records (email, payment) are held by Gumroad under <a href="https://gumroad.com/privacy">Gumroad's privacy policy</a> — not by us. We receive no purchase data and cannot see your payment information.</p>
+
+<h2>6. Permissions and why we need them</h2>
+<ul>
+  <li><code>alarms</code> — schedule periodic checks without keeping a process running</li>
+  <li><code>storage</code> — keep your monitors and history on-device</li>
+  <li><code>notifications</code> — alert you when a monitored page changes</li>
+  <li><code>tabs</code> / <code>scripting</code> — capture the monitored region for visual diff, and run the element picker on the page you are viewing</li>
+  <li><code>offscreen</code> — parse fetched HTML and compute image signatures</li>
+  <li>Host access (<code>&lt;all_urls&gt;</code>) — needed because you choose which sites to monitor; the extension only ever accesses pages <em>you</em> add or the tab you pick an element from</li>
+</ul>
+
+<h2>7. Children</h2>
+<p>Page Watch is not directed at children and collects no personal data from anyone.</p>
+
+<h2>8. Changes to this policy</h2>
+<p>If this policy changes, the updated version will be published at this URL with a new effective date.</p>
+
+<h2>9. Contact</h2>
+<p>Questions about this policy: contact the developer via the Chrome Web Store listing's support link for Page Watch.</p>
+
+<footer>© 2026 Page Watch. This extension is independent software — it is not sold to, operated by, or affiliated with any data broker.</footer>
+</body>
+</html>
