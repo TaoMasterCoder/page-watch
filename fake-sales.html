@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Was that "50% off" ever real? How people actually catch price drops without a $30/month subscription</title>
+<meta name="description" content="Keepa cut its free tier from 5,000 items to 200. Real Reddit threads on fake sales, price history tools, and monitoring any store's price field directly — no subscription.">
+<style>
+  body { max-width: 720px; margin: 40px auto; padding: 0 20px; font: 16px/1.75 system-ui, -apple-system, sans-serif; color: #202124; }
+  h1 { font-size: 27px; line-height: 1.3; border-bottom: 2px solid #0b57d0; padding-bottom: 8px; }
+  h2 { font-size: 19px; margin-top: 32px; color: #0b57d0; }
+  .meta { color: #777; font-size: 13px; }
+  blockquote { border-left: 3px solid #dadce0; margin-left: 0; padding: 2px 0 2px 16px; color: #444; font-style: italic; }
+  .cta { background: #e8f0fe; border-radius: 8px; padding: 14px 18px; font-size: 15px; margin-top: 28px; }
+  a { color: #0b57d0; }
+  footer { margin-top: 44px; padding-top: 12px; border-top: 1px solid #eee; color: #777; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Was that "50% off" ever real?</h1>
+<p class="meta">September 24, 2026 · ~6 min read · about price tracking, fake sales, and subscription fatigue</p>
+
+<p>An r/smallbusiness user put it better than any review site:</p>
+
+<blockquote>"…shows you the price history on amazon so you can see if that 50% off deal is actually cheaper or they just raised the price last week. saved me from fake sales so many times."</blockquote>
+
+<p>That's the whole game in one sentence. A discount is only real relative to history — and the tools that give you history are quietly turning into subscriptions.</p>
+
+<h2>The £305 SSD that proves the point</h2>
+
+<p>On r/pcmasterrace, someone shared their buy: "Oct 2024, I paid £305 for an 8TB Samsung Evo SSD, according to camelcamelcamel the last price for stock was £849." They didn't get lucky by refreshing harder. They had the price history in hand and knew £305 was a genuine low, not a manufactured one.</p>
+
+<p>This is why price-history tools became essential: Amazon prices move constantly, and "list price" anchors are often fiction. But the two tools everyone names — Keepa and CamelCamelCamel — have drifted in different directions, and both leave a gap.</p>
+
+<h2>Gap #1: Keepa's paywall</h2>
+
+<p>Keepa cut its free tracking from 5,000 items to 200 unless you subscribe (~£30/month). The reaction on r/Frugal was the quote that started my own project:</p>
+
+<blockquote>"I will not spend $30 a month on a subscription that might save me a couple hundred a year."</blockquote>
+
+<p>The math is the problem. A subscription only pays off if you're a heavy user — an FBA seller watching thousands of SKUs. For a normal person tracking a handful of items ("did the thing I want drop below £X?"), the pricing is structurally wrong. Even casual observers noticed: an r/IndianSkincareAddicts thread compared the two tools and concluded "Keepa looks like subscription based while Camel is free."</p>
+
+<h2>Gap #2: history ≠ alerts on the page you actually watch</h2>
+
+<p>CamelCamelCamel stays free, but it answers a different question. It shows you <em>Amazon's</em> aggregate price history. It can't tell you when <em>your</em> specific store page changes — a local retailer's clearance corner, a refurbished-goods page, a direct-from-manufacturer store, a marketplace listing outside Amazon's ecosystem. Price-history databases only exist for platforms big enough to be worth crawling.</p>
+
+<p>For everything else, the old r/Frugal advice still applies — "use the Keepa extension… set alerts when the price drops below" a threshold — except it only works where Keepa has data. If the store isn't Amazon, you're back to F5.</p>
+
+<h2>The direct approach: watch the price itself</h2>
+
+<p>There's a simpler model that covers both gaps: don't ask a database what the price <em>was</em>; watch the price element on the actual page and get told when it <em>changes</em>.</p>
+
+<p>This works on any public store page, on any site, because it needs no historical database at all — just a snapshot of the element you picked, compared on a schedule. A text diff tells you exactly what moved: <del>£849</del> → <strong>£305</strong>.</p>
+
+<p>I built this as <strong>Page Watch</strong>: point-and-click any element (the price, the "In stock" badge, the shipping note), choose a check interval from 5 minutes to 24 hours, and get a browser notification with a highlighted diff when it changes. Free for 3 monitors with no trial timer; Pro is $29 one-time (not per month) for unlimited monitors. Everything runs locally in your browser — no account, no cloud, no data collection — and the <a href="https://github.com/TaoMasterCoder/page-watch">core comparison engine is open source</a>.</p>
+
+<p>What it won't do: reconstruct history you didn't record. It starts knowing prices from the moment you add the monitor. For Amazon specifically, a history tool still tells you whether today's "deal" beats last year's low. The honest setup for a serious deal-hunter is both: history for context, a local watcher for the moment.</p>
+
+<div class="cta">
+  <strong>Try it:</strong> <a href="https://microsoftedge.microsoft.com/addons/detail/page-watch-web-change-monitor/mnjpjpgidcboalkinnfplnjagofaabdc">Page Watch on Edge Add-ons</a> · <a href="https://github.com/TaoMasterCoder/page-watch">source code</a> · <a href="./privacy.html">privacy policy (we collect nothing)</a> · <a href="./f5-ritual.html">The F5 Ritual (why people monitor pages at all)</a>
+</div>
+
+<footer>Quoted comments are from public Reddit threads (r/smallbusiness, r/pcmasterrace, r/Frugal, r/IndianSkincareAddicts); Keepa tier change and pricing verified against keepa.com and third-party reviews in September 2026. Written by the maker of Page Watch.</footer>
+</body>
+</html>
