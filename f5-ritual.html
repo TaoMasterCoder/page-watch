@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The F5 Ritual — why people pay $20/month to watch one web page (and what to use instead)</title>
+<meta name="description" content="Vaccine slots, GPU restocks, price drops, login-only pages: real Reddit threads about monitoring web pages for changes, why subscription monitors frustrate people, and a local one-time-purchase alternative.">
+<style>
+  body { max-width: 720px; margin: 40px auto; padding: 0 20px; font: 16px/1.75 system-ui, -apple-system, sans-serif; color: #202124; }
+  h1 { font-size: 28px; line-height: 1.3; border-bottom: 2px solid #0b57d0; padding-bottom: 8px; }
+  h2 { font-size: 19px; margin-top: 32px; color: #0b57d0; }
+  .meta { color: #777; font-size: 13px; }
+  blockquote { border-left: 3px solid #dadce0; margin-left: 0; padding: 2px 0 2px 16px; color: #444; font-style: italic; }
+  .cta { background: #e8f0fe; border-radius: 8px; padding: 14px 18px; font-size: 15px; margin-top: 28px; }
+  code { background: #f1f3f4; padding: 1px 5px; border-radius: 3px; font-size: 14px; }
+  a { color: #0b57d0; }
+  footer { margin-top: 44px; padding-top: 12px; border-top: 1px solid #eee; color: #777; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>The F5 Ritual</h1>
+<p class="meta">September 24, 2026 · ~7 min read · about web page monitoring, subscription fatigue, and local-first tools</p>
+
+<p>Somewhere right now, a person in the UK is refreshing a vaccine booking page at 6:47am, because they learned the slots open around 7. A day trader in Ohio has a browser tab pinned to an IPO news page, set to check every two hours. Someone in Serbia wrote a shell script. Someone else bought a $35/month monitoring plan to watch a single price field.</p>
+
+<p>They're all doing the same thing: waiting for a web page to change, and refusing to be the last one to know.</p>
+
+<p>I spent a week digging through Reddit threads about web page monitoring — vaccine slots, GPU restocks, sold-out Disney merchandise, ammo deals, rental listings, competitor pricing. The scenarios differ; the frustration is identical. Here's what people actually complain about, in their own words.</p>
+
+<h2>What people monitor (and why manual refreshing fails)</h2>
+
+<p><strong>Time-sensitive slots.</strong> "Vaccine booking site" threads are full of people describing the same routine: wake up before the page updates, refresh, lose the slot anyway. One r/CoronavirusUK user reported the eligibility text changed "sometime between 6am and 7am" — and they only found out afterwards. The pattern: changes land in a narrow window, and human refresh schedules always miss it.</p>
+
+<p><strong>Restocks and drops.</strong> The r/Amd playbook for buying a GPU at launch is legendary: "Get up early on launch day, open every retailer website, F5 and pray. Fail. Set up distill web monitor." Fitness equipment during lockdown was the same story — an r/gundeals user described sniping home-gym gear with page-change alerts because "sold out in minutes" was the normal state.</p>
+
+<p><strong>Prices.</strong> The biggest single category. Keepa cutting its free tier from 5,000 tracked items to 200 — unless you pay ~£30/month — produced the exact quote that started my own project:</p>
+
+<blockquote>"I will not spend $30 a month on a subscription that might save me a couple hundred a year." — r/Frugal</blockquote>
+
+<p><strong>Pages behind a login.</strong> Order status, account quotas, member-only announcements, internal dashboards. This is the one almost every cloud monitor can't do: their servers can't see what only your browser session can see.</p>
+
+<h2>The three complaints about the tools that exist</h2>
+
+<p><strong>1. Subscription fatigue.</strong> The category leaders all charge monthly: Visualping's paid tiers run $10&ndash;140/mo, Distill.io's cloud plans $15&ndash;35/mo (Professional) and $80+/mo (Flexi), MonitorSpider is a flat $20/mo. For someone watching three pages "a couple times a week," that's a structural mismatch — the same mismatch that created the one-time-purchase movement in music software (Bitwig) and screenshots (CSS Scan, $69 once, $100k+ in cumulative sales per its IndieHackers page).</p>
+
+<p><strong>2. Cloud = your pages pass through someone else's servers.</strong> Every cloud monitor fetches the pages you care about from their infrastructure. For a price field that's harmless. For an account page, an internal dashboard, or anything you wouldn't paste into a stranger's form — it's a hard no. And the alternative on offer is usually "install our extension and manually capture," which defeats the automation.</p>
+
+<p><strong>3. It fails exactly when it matters.</strong> The most upvoted monitoring comment I found in a week of digging wasn't praise. It was five words: "had one job and it didn't do it." Missed one restock and the subscription's value for that month is zero.</p>
+
+<h2>What actually fixes this</h2>
+
+<p>The requirements fall out of the complaints by themselves:</p>
+
+<ul>
+  <li><strong>Runs where your browser runs</strong> — local monitoring sees logged-in pages, and nothing leaves your machine. No account, no cloud, no data collection.</li>
+  <li><strong>Point-and-click targeting</strong> — select the price, the "Sold out" badge, the announcement block. Not the whole page (that's how you get alerted about timestamp noise every single check).</li>
+  <li><strong>One-time price</strong> — a watcher is a watcher. $29 once vs $20/mo forever is a 10x cost difference over a year, for identical functionality on personal-scale monitoring.</li>
+  <li><strong>Boring reliability</strong> — visible check history, so "did it actually run at 3am?" is answerable without guessing.</li>
+</ul>
+
+<p>I built exactly this, because I was the person refreshing pages at 6:47am: <strong>Page Watch</strong> — a free browser extension (3 monitors, no trial timer), with a $29 one-time Pro tier for unlimited monitors and webhook push. Everything stays local; the core comparison engine is <a href="https://github.com/TaoMasterCoder/page-watch">open source</a>. It won't catch a slot that sells out in 30 seconds — nothing will — but it will stop you from being last to know about everything that changes on a human timescale.</p>
+
+<div class="cta">
+  <strong>Try it:</strong> <a href="https://microsoftedge.microsoft.com/addons/detail/page-watch-web-change-monitor/mnjpjpgidcboalkinnfplnjagofaabdc">Page Watch on Edge Add-ons</a> · <a href="https://github.com/TaoMasterCoder/page-watch">source code</a> · <a href="./privacy.html">privacy policy (we collect nothing)</a>
+</div>
+
+<footer>All quoted Reddit comments are from public threads (r/Frugal, r/Amd, r/gundeals, r/CoronavirusUK); pricing figures checked against vendor pricing pages in September 2026. Written by the maker of Page Watch.</footer>
+</body>
+</html>
